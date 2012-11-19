@@ -111,9 +111,9 @@ if has("gui_running")
   " Font style in Windows
   if has("win32")
   " set guifont=Consolas:h9
-  " set guifontwide=ÐÂËÎÌå:h10
+  " set guifontwide=新宋体:h10
     set guifont=Consolas:h10
-    set guifontwide=ÐÂËÎÌå:h10.5
+    set guifontwide=新宋体:h10.5
   endif
 endif
 
