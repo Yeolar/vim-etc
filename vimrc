@@ -315,6 +315,7 @@ nmap <silent> <F7> :TagbarToggle<CR>
 
 " Set NERDTree
 nmap <silent> <F8> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc', '\.swp']
 
 " Set DoxyGenToolkit plugin
 let g:load_doxygen_syntax=1
