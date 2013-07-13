@@ -12,6 +12,7 @@ set nocompatible
 " ** Terminal view and some other options **
 " ==========================================
 "
+let &t_Co=256
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -63,8 +64,13 @@ endif
 
 " Set status line format and show items
 set laststatus=2    " show status
-set statusline=%<%f\ [%1*%M%*%n%R%H]\ [%{&ff}]%=%03b,0x%02B\ \ %-14.(%4l/%L,%c%V%)\ %4P
-hi User1 term=reverse,bold cterm=reverse,bold ctermfg=red ctermbg=white
+set statusline=%4*\ %<%f\ %*%6*%M%*%2*\ %R%H%W%*%2*%=%*%2*\ %{&ff}\ %{&fenc}\ 0x%02B\ %*%1*\ %3p%%\ %L\ %*%5*\ %3l:%-3v\ %*
+hi User1 term=bold cterm=bold ctermfg=white ctermbg=grey
+hi User2 term=bold cterm=bold ctermfg=white ctermbg=darkgrey
+hi User3 term=bold cterm=bold ctermfg=white ctermbg=darkblue
+hi User4 term=bold cterm=bold ctermfg=white ctermbg=darkmagenta
+hi User5 term=bold cterm=bold ctermfg=black ctermbg=white
+hi User6 term=bold cterm=bold ctermfg=red ctermbg=white
 
 " Highlight the characters which over the 80 column in long lines
 "match ErrorMsg /\%>80v.\+/
@@ -93,7 +99,7 @@ imap <Esc>[8~ <End>
 "
 if has("gui_running")
 " set columns=84
-  set lines=48
+" set lines=48
 
   " Toggle menu and toolbar
 " set guioptions-=m     " hide menu
@@ -184,6 +190,10 @@ inoremap `` ``<Left>
 inoremap '' ''<Left>
 inoremap "" ""<Left>
 
+" autocomplete display better
+"inoremap <buffer> <c-x><c-u> <c-x><c-u><c-p>
+"inoremap <buffer> <c-s-space> <c-x><c-u><c-p>
+
 " switch window
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
@@ -244,6 +254,8 @@ if has("autocmd")
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting
+  filetype on
+  filetype plugin on
   filetype plugin indent on
 
   " Put these in an autocmd group, so that we can delete them easily.
@@ -271,11 +283,13 @@ if has("autocmd")
 " autocmd FileType rst set formatoptions+=nmB
 
   " Open Complete for some src files.
-"  autocmd FileType c set omnifunc=ccomplete#Complete
-"  autocmd FileType css set omnifunc=csscomplete#Complete
-"  autocmd FileType html set omnifunc=htmlcomplete#Complete
-"  autocmd FileType python set omnifunc=pythoncomplete#Complete
-"  autocmd FileType xml set omnifunc=xmlcomplete#Complete
+" autocmd FileType c set omnifunc=ccomplete#Complete
+" autocmd FileType java set omnifunc=javacomplete#Complete
+" autocmd FileType java set omnifunc=javacomplete#CompleteParamsInfo
+" autocmd FileType python set omnifunc=pythoncomplete#Complete
+" autocmd FileType css set omnifunc=csscomplete#Complete
+" autocmd FileType html set omnifunc=htmlcomplete#Complete
+" autocmd FileType xml set omnifunc=xmlcomplete#Complete
 
   " Set make
   autocmd FileType c compiler gcc
