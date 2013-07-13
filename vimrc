@@ -271,11 +271,11 @@ if has("autocmd")
 " autocmd FileType rst set formatoptions+=nmB
 
   " Open Complete for some src files.
-  autocmd FileType c set omnifunc=ccomplete#Complete
-  autocmd FileType css set omnifunc=csscomplete#Complete
-  autocmd FileType html set omnifunc=htmlcomplete#Complete
-  autocmd FileType python set omnifunc=pythoncomplete#Complete
-  autocmd FileType xml set omnifunc=xmlcomplete#Complete
+"  autocmd FileType c set omnifunc=ccomplete#Complete
+"  autocmd FileType css set omnifunc=csscomplete#Complete
+"  autocmd FileType html set omnifunc=htmlcomplete#Complete
+"  autocmd FileType python set omnifunc=pythoncomplete#Complete
+"  autocmd FileType xml set omnifunc=xmlcomplete#Complete
 
   " Set make
   autocmd FileType c compiler gcc
