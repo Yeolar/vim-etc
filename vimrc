@@ -64,7 +64,7 @@ endif
 
 " Set status line format and show items
 set laststatus=2    " show status
-set statusline=%4*\ %<%f\ %*%6*%M%*%2*\ %R%H%W%*%2*%=%*%2*\ %{&ff}\ %{&fenc}\ 0x%02B\ %*%1*\ %3p%%\ %L\ %*%5*\ %3l:%-3v\ %*
+set statusline=%4*\ %<%f\ %*%6*%M%*%2*\ %{fugitive#statusline()}\ %R%H%W%*%2*%=%*%2*\ %{&ff}\ %{&fenc}\ 0x%02B\ %*%1*\ %3p%%\ %L\ %*%5*\ %3l:%-3v\ %*
 hi User1 term=bold cterm=bold ctermfg=white ctermbg=grey
 hi User2 term=bold cterm=bold ctermfg=white ctermbg=darkgrey
 hi User3 term=bold cterm=bold ctermfg=white ctermbg=darkblue
@@ -77,8 +77,8 @@ hi User6 term=bold cterm=bold ctermfg=red ctermbg=white
 " alternative
 "highlight overlength ctermbg=red ctermfg=white guibg=#592929
 "match overlength /\%>80v.*/
-"highlight overlength ctermbg=gray
-"match overlength /\%81v/
+hi overlength ctermbg=darkgrey
+match overlength /\%81v.*/
 
 " Compatible for rxvt in MSYS
 map  <Esc>[7~ <Home>
