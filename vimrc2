@@ -1,0 +1,193 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+"" The following are examples of different formats supported.
+"" Keep Plugin commands between vundle#begin/end.
+"" plugin from http://vim-scripts.org/vim/scripts.html
+"" Plugin 'L9'
+"" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+"" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+"" The sparkup vim script is in a subdirectory of this repo called vim.
+"" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"" Install L9 and avoid a Naming conflict if you've already installed a
+"" different version somewhere else.
+"" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'leafgarland/typescript-vim'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-scripts/a.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'solarnz/thrift.vim'
+Bundle "lepture/vim-jinja"
+"Plugin 'posva/vim-vue'
+Plugin 'Yeolar/vim-command'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist = ['~/*',]
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+
+nnoremap <leader>j :YcmCompleter GoTo<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+map QA gqap
+
+" switch window
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+" resize window
+nnoremap <C-S-Left> 5<c-w><
+nnoremap <C-S-Down> 5<c-w>-
+nnoremap <C-S-Up> 5<c-w>+
+nnoremap <C-S-Right> 5<c-w>>
+
+" scroll
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+
+" switch buffers
+nnoremap <silent> <C-left> :bnext<cr>
+nnoremap <silent> <C-right> :bNext<cr>
+
+" switch syntax highlighting on
+syntax on
+color default
+
+set autochdir         " change working directory to current file directory
+set autoindent        " copy indent from current line when starting a new line
+set autowrite         " save before commands like :next, :make, ...
+set backspace=2       " allow backspacing over everything in insert mode
+set cindent           " enables automatic C program indenting
+set cinoptions=g1,h1,(0,W4
+set foldlevelstart=99 " start editing with no folds closed
+set foldmethod=indent " lines with equal indent form a fold
+set hidden            " hide buffers when they are abandoned
+set history=50        " keep 50 lines of command line history
+set hlsearch          " open the search highlight
+set nohlsearch        " close the search highlight
+set incsearch         " do incremental searching
+set ignorecase        " do case insensitive matching
+set smartcase         " do smart case matching
+set list              " display tabs
+set listchars=tab:>-,trail:-
+"set mouse=a           " enable mouse
+set nobackup          " no file backup
+"set number            " show the line number
+"set pastetoggle=<F11> " toggles the 'paste' option
+set ruler             " show the line and column number of the cursor position
+set showcmd           " display incomplete commands
+set showmatch         " show matching brackets
+"set splitbelow        " open the new window on the below instead of the top
+"set splitright        " open the new window on the right instead of the left
+
+" Set file format and encodings
+set fileformats=unix,dos
+set fileformat=unix         " Set file format to unix
+set fileencodings=utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set fileencoding=utf-8 " Set file encoding to utf-8
+set encoding=utf-8
+let &termencoding = &encoding
+
+" Tab default for 2, and change tabs to spaces
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set smarttab
+set expandtab
+
+" Set status line format and show items
+set laststatus=2    " show status
+set statusline=%4*\ %<%f\ %*%6*%M%*%2*\ %{fugitive#statusline()}\ %R%H%W%*%2*%=%*%2*\ %{&ff}\ %{&fenc}\ 0x%02B\ %*%1*\ %3p%%\ %L\ %*%5*\ %3l:%-3v\ %*
+hi User1 term=bold cterm=bold ctermfg=white ctermbg=grey
+hi User2 term=bold cterm=bold ctermfg=white ctermbg=darkgrey
+hi User3 term=bold cterm=bold ctermfg=white ctermbg=darkblue
+hi User4 term=bold cterm=bold ctermfg=white ctermbg=darkmagenta
+hi User5 term=bold cterm=bold ctermfg=black ctermbg=white
+hi User6 term=bold cterm=bold ctermfg=red ctermbg=white
+
+" Put these in an autocmd group, so that we can delete them easily.
+augroup vimrcEx
+au!
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+" Also don't do it when the mark is in the first line, that is the default
+" position when opening a file.
+autocmd BufReadPost *
+\ if line("'\"") > 1 && line("'\"") <= line("$") |
+\   exe "normal! g`\"" |
+\ endif
+
+" Set filetypes.
+autocmd BufNewFile,BufRead *.bzl setfiletype python
+
+" For all text files set 'textwidth' to 76 characters.
+autocmd FileType text setlocal textwidth=76
+
+" Set rst file format options
+" autocmd FileType rst setlocal textwidth=74
+" autocmd FileType rst set formatoptions+=nmB
+
+" Set make
+autocmd FileType c compiler gcc
+autocmd FileType c setlocal makeprg=gcc\ $*
+autocmd FileType python compiler pyunit
+autocmd FileType python setlocal makeprg=python\ $*
+autocmd FileType python setlocal efm=\ \ File\ \"%f\"\\,\ line\ %l\\,\ %m
+
+augroup END
+
+" Convenient command to see the difference between the current buffer and
+" the file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+      \ | wincmd p | diffthis
+endif
+
+command! JsonFormat :execute '%!python -m json.tool'
+  \ | :execute '%!python -c "import re,sys;sys.stdout.write(re.sub(r\"\\\\u[0-9a-f]{4}\", lambda x: unichr(int(\"0x\" + x.group(0)[2:], 16)).encode(\"utf-8\"), sys.stdin.read()))"'
+  \ | :set ft=javascript
+  \ | :1
